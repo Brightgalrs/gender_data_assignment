@@ -1,0 +1,6 @@
+2017-02-21,23:23:17,bag_of_unigrams|bag_of_trigrams|bag_of_bigrams,0.52017-02-22,00:32:23,characters_per_word|bag_of_pos_unigrams|bag_of_pos_bigrams|bag_of_unigrams|bag_of_bigrams|bag_of_function_words|words_per_sentence|unique_words_ratio|bag_of_pos_trigrams|bag_of_trigrams|topic_model_scores,0.728509852217
+2017-02-22,00:55:50,bag_of_pos_unigrams|bag_of_pos_bigrams|bag_of_pos_trigrams,0.722844827586
+2017-02-22,01:19:46,bag_of_bigrams|bag_of_trigrams|bag_of_unigrams,0.586206896552
+2017-02-22,01:43:26,words_per_sentence|characters_per_word|unique_words_ratio,0.550431034483
+2017-02-22,02:06:11,topic_model_scores,0.568842364532
+2017-02-22,02:32:52,bag_of_function_words,0.658004926108
