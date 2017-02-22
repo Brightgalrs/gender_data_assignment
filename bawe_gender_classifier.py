@@ -11,7 +11,6 @@ genderlabfile = datadir + "/BAWE_balanced_subset.csv"
 conffile = "conf.txt"
 
 
-
 def load_balanced_gender_labels():
     '''
     Read the gender labels file and return dictionary mapping student id
@@ -50,5 +49,8 @@ if __name__ == "__main__":
     essays, genderlabels, students = load_essays(gender_dict)
     conf = load_conf_file()
     features = fe.extract_features(essays, conf)
+    score = predict_gender(features, genderlabels)
+    print(score)
 
-    print (predict_gender(features, genderlabels))
+    with open('experiments.csv', 'a') as f:
+        f.write(",".join(('{:%Y-%m-%d,%H:%M:%S}'.format(datetime.datetime.now()), "|".join(conf), str(score))))
