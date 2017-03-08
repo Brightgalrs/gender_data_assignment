@@ -7,6 +7,7 @@ import numpy
 import re
 import sys
 import csv
+import datetime
 
 datafile = "data/sarcasm_v2.csv"
 conffile = sys.argv[1]
@@ -17,7 +18,8 @@ if len(sys.argv) > 2:
 
 def load_data():
 	with open(datafile) as f:
-		return list(csv.reader(f))[0:ndata]
+		ls = list(csv.reader(f))[0:ndata]
+		return [[b.decode('UTF-8') for b in a] for a in ls]
 
 def load_conf_file():
 	conf = set(line.strip() for line in open(conffile))
@@ -30,7 +32,11 @@ def predict_sarcasm(X, Y):
 if __name__ == "__main__":
 	data = load_data()
 	conf = load_conf_file()
-	features = fe.extract_features([line[-1] for line in data if line[0]=="GEN"], conf)
+	features = fe.extract_features([line[-1] for line in data if line[0]=="GEN"], [line[-2] for line in data if line[0]=="GEN"], conf)
 	labels = [line[1] for line in data if line[0]=="GEN"]
 
-	print (predict_sarcasm(features, labels))
+	score = predict_sarcasm(features, labels)
+	print(score)
+
+	with open('log.csv', 'a') as f:
+		f.write(",".join(('{:%Y-%m-%d,%H:%M:%S}'.format(datetime.datetime.now()), "|".join(conf), str(score))))
